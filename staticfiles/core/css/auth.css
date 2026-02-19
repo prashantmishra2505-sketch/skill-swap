@@ -1,0 +1,147 @@
+/* core/static/core/css/auth.css */
+
+/* --- Main Layout --- */
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    gap: 5rem;
+    padding: 2rem;
+}
+
+/* --- Left Side (Brand & Logo) --- */
+.login-brand {
+    flex: 1;
+    text-align: center;
+    max-width: 450px;
+    position: relative;
+    top: 20px; /* Reduced from 50px so it sits higher overall */
+}
+
+/* TIGHTEN TEXT SPACING */
+.login-brand h1, 
+.login-brand h2 {
+    font-size: 3.5rem;
+    color: #3b82f6;
+    margin-bottom: 5px; /* Minimal space below title */
+    font-weight: 800;
+}
+
+.login-brand p {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-bottom: 0px; /* No space below subtitle */
+}
+
+/* FIX: LOGO CONTAINER */
+.logo-circle {
+    width: 100%;
+    max-width: 450px;
+    /* CHANGE: Height auto removes the trapped empty space */
+    height: auto; 
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* THE MAGNET: Pulls the logo up towards the text */
+    margin-top: 0px; 
+}
+
+.logo-circle img {
+    width: 100%;
+    height: auto;
+    mix-blend-mode: multiply;
+}
+
+/* --- Right Side (Login Card) --- */
+.login-card {
+    flex: 0 0 400px;
+    background: white;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(59, 130, 246, 0.15);
+}
+
+.card-header h2 { 
+    font-size: 1.8rem; 
+    color: #333; 
+    margin-bottom: 5px; 
+}
+
+.card-header p {
+    color: #64748b;        /* Gray color */
+    margin-bottom: 30px;   /* Adds space before the Username field */
+    font-size: 1rem;
+}
+
+/* --- Inputs --- */
+.input-group { margin-bottom: 15px; }
+.input-group label { display: block; font-size: 0.9rem; color: #64748b; margin-bottom: 5px; }
+
+.input-group input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #f8fafc;
+    outline: none;
+    transition: 0.3s;
+    font-size: 1rem;
+}
+
+.input-group input:focus, select:focus {
+    background: white;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* --- Buttons --- */
+.btn-login {
+    width: 100%;
+    padding: 15px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    margin-top: 10px;
+}
+.btn-login:hover { background: #2563eb; transform: translateY(-2px); }
+
+.btn-signup {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+.btn-signup:hover { border-color: #3b82f6; color: #3b82f6; background: #eff6ff; }
+
+/* --- Divider & Footer --- */
+.divider {
+    display: flex; align-items: center; color: #94a3b8; font-size: 0.8rem; margin: 20px 0;
+}
+.divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid #e2e8f0; }
+.divider span { padding: 0 10px; }
+
+.footer-link { text-align: center; margin-top: 20px; font-size: 0.9rem; color: #64748b; }
+.footer-link a { color: #3b82f6; text-decoration: none; font-weight: 600; }
+
+/* --- Mobile --- */
+@media (max-width: 900px) {
+    .login-container { flex-direction: column; gap: 2rem; }
+    .login-brand { padding: 0 20px; top: 0; }
+    .login-card { width: 100%; }
+}

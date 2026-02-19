@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 4rem auto;">
+    
+    <div class="card">
+        <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; margin-bottom: 2rem;">
+            <h2 style="color: #334155; margin-bottom: 5px;">Add New Skill</h2>
+            <p style="color: #64748b;">Expand your profile by adding what you know or what you want to learn.</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; color: #64748b; margin-bottom: 8px; font-weight: 500;">Select Skill</label>
+                {{ form.skill }}
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label style="display: block; color: #64748b; margin-bottom: 8px; font-weight: 500;">Role</label>
+                {{ form.role }}
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" style="flex: 1; margin: 0; border-radius: 50px;">
+                    Save Skill
+                </button>
+                
+                <a href="{% url 'dashboard' %}" class="btn-cancel">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

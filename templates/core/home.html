@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <h1 class="hero-title">Find Skills to Learn</h1>
+    <p class="hero-subtitle">Connect with people teaching exactly what you want to know.</p>
+</div>
+
+<form method="get" class="search-bar">
+    <input 
+        type="text" 
+        name="q" 
+        id="search-input" 
+        list="skill-suggestions" 
+        placeholder="What do you want to learn? (e.g. Guitar)" 
+        value="{{ request.GET.q }}"
+        autocomplete="off"
+    >
+    <datalist id="skill-suggestions"></datalist>
+    <button type="submit" class="btn-search">Search</button>
+</form>
+
+<div class="grid-skills">
+    {% for item in skills %}
+    <div class="card">
+        <div class="skill-card-inner">
+            <div class="skill-icon">
+                <i class="fa-solid fa-user" style="color: #94a3b8;"></i>
+            </div>
+            <div>
+                <h3 class="skill-name">{{ item.skill.name }}</h3>
+                <span class="skill-author">by {{ item.user.username }}</span>
+            </div>
+        </div>
+        
+        <div style="margin-top: 1rem;">
+            <a href="{% url 'send_request' item.user.id %}" class="btn btn-outline" style="width: 100%; display: block;">Request Swap</a>
+        </div>
+    </div>
+    {% empty %}
+    <div class="empty-state">
+        <i class="fa-regular fa-folder-open empty-icon"></i>
+        <p style="color: var(--secondary);">No skills found matching your search.</p>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+    document.getElementById('search-input').addEventListener('input', function() {
+        let query = this.value;
+        let dataList = document.getElementById('skill-suggestions');
+        if (query.length > 1) {
+            fetch(`/autocomplete/?term=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    dataList.innerHTML = '';
+                    data.forEach(item => {
+                        let option = document.createElement('option');
+                        option.value = item;
+                        dataList.appendChild(option);
+                    });
+                });
+        }
+    });
+</script>
+{% endblock %}

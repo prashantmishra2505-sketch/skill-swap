@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/css/auth.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    
+    <div class="login-brand">
+        <h2>Skill Swap</h2>
+        <p>Join the community.<br>Start swapping today.</p>
+        
+        <div class="logo-circle">
+            <img src="{% static 'core/images/Final_logo.png' %}" alt="Skill Swap Logo">
+        </div>
+    </div>
+
+    <div class="login-card">
+        <div class="card-header">
+            <h2>Create Account</h2>
+            <p style="color: #94a3b8; margin-bottom: 20px;">It's free and takes 1 minute.</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            
+            {% for field in form %}
+            <div class="input-group">
+                <label>{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div style="color: #ef4444; font-size: 0.8rem; margin-top: 5px;">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn-login">Sign Up</button>
+        </form>
+
+        <div class="divider">
+            <span>OR</span>
+        </div>
+        
+        <p class="footer-link">
+            Already have an account? <a href="{% url 'login' %}">Log In</a>
+        </p>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const user = document.getElementById('id_username');
+        if (user) user.placeholder = "Choose a username";
+
+        const email = document.getElementById('id_email');
+        if (email) email.placeholder = "name@example.com";
+
+        const pass1 = document.getElementById('id_password1');
+        if (pass1) pass1.placeholder = "Create a strong password";
+
+        const pass2 = document.getElementById('id_password2');
+        if (pass2) pass2.placeholder = "Confirm your password";
+    });
+</script>
+{% endblock %}

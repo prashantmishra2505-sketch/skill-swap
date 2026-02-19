@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-grid">
+    
+    <div class="login-card">
+        <div class="card-header">
+            <h2>Edit Profile</h2>
+            <p>Update your personal details.</p>
+        </div>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <h4 class="form-section-head" style="margin-top:0;">Account Info</h4>
+            <div class="input-group">
+                <label>First Name</label>
+                {{ u_form.first_name }}
+            </div>
+            <div class="input-group">
+                <label>Last Name</label>
+                {{ u_form.last_name }}
+            </div>
+            <div class="input-group">
+                <label>Email</label>
+                {{ u_form.email }}
+            </div>
+            <h4 class="form-section-head">Profile Image</h4>
+            <div class="input-group">
+                {{ p_form.image }}
+            </div>
+
+            <h4 class="form-section-head">About You</h4>
+            <div class="input-group">
+                <label>Location</label>
+                {{ p_form.location }}
+            </div>
+            <div class="input-group">
+                <label>Bio</label>
+                {{ p_form.bio }}
+            </div>
+
+            <button type="submit" class="btn-primary">Save Changes</button>
+        </form>
+    </div>
+
+    <div class="current-profile-card">
+        <div class="profile-header">
+            {% if user.profile.image %}
+                <img src="{{ user.profile.image.url }}" class="profile-pic-large" style="margin: 0 auto 1rem; display: block;">
+            {% else %}
+                <div class="avatar-circle">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            {% endif %}
+            <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+            <p style="color: #64748b;">@{{ user.username }}</p>
+        </div>
+
+        <div class="profile-details">
+            <div class="detail-item">
+                <i class="fa-solid fa-envelope"></i>
+                <span>{{ user.email|default:"No email added" }}</span>
+            </div>
+            
+            <div class="detail-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>{{ user.profile.location|default:"No location set" }}</span>
+            </div>
+            
+            <div class="detail-item" style="align-items: flex-start;">
+                <i class="fa-solid fa-quote-left" style="margin-top: 5px;"></i>
+                <p style="margin: 0; line-height: 1.5; color: #475569;">
+                    {{ user.profile.bio|default:"No bio yet." }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card" style="margin-top: 2rem; border: 1px solid #fee2e2; background: #fffafb;">
+    <h3 style="color: #ef4444; margin-bottom: 0.5rem;">Danger Zone</h3>
+    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">
+        Once you delete your account, there is no going back. Please be certain.
+    </p>
+    <a href="{% url 'delete_account' %}" class="btn" style="background: #ef4444; border: none;">
+        Delete My Account
+    </a>
+</div>
+{% endblock %}

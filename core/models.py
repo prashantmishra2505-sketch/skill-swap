@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # 1. User Profile (Extension of default User)
 class Profile(models.Model):
@@ -7,8 +8,8 @@ class Profile(models.Model):
     location = models.CharField(max_length=100, blank=True)
     bio = models.TextField(blank=True)
     
-    # NEW: Image Field (default image is optional but good practice)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    # 2. Change ImageField to CloudinaryField
+    image = CloudinaryField('image', default='default') 
 
     def __str__(self):
         return f'{self.user.username} Profile'

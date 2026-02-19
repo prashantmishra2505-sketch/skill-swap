@@ -189,19 +189,23 @@ def get_messages(request, user_id):
     return JsonResponse(messages_data, safe=False)
 
 # Create profile page
+# Create profile page
 @login_required
 def edit_profile(request):
     profile, created = Profile.objects.get_or_create(user=request.user)
 
     if request.method == 'POST':
         u_form = UserForm(request.POST, instance=request.user)
-        # FIX: Add request.FILES here so it captures the image upload
         p_form = ProfileForm(request.POST, request.FILES, instance=profile)
         
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            return redirect('edit_profile') # Stay on page to see the change
+            return redirect('edit_profile') 
+        else:
+            # THIS WILL REVEAL THE SECRET ERRORS
+            print("🚨 USER FORM ERRORS:", u_form.errors)
+            print("🚨 PROFILE FORM ERRORS:", p_form.errors)
     else:
         u_form = UserForm(instance=request.user)
         p_form = ProfileForm(instance=profile)
@@ -210,7 +214,6 @@ def edit_profile(request):
         'u_form': u_form,
         'p_form': p_form
     })
-
 # Refresh for newer requests
 @login_required
 def check_updates(request):

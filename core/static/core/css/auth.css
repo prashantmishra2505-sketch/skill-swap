@@ -140,27 +140,32 @@
 .footer-link a { color: #3b82f6; text-decoration: none; font-weight: 600; }
 
 /* --- MOBILE LAYOUT OPTIMIZATION --- */
-@media (max-width: 500px) {
+@media (max-width: 600px) {
+    /* 1. Stretch the container to ignore the base padding */
     .login-container {
-        padding: 10px; /* Removes massive empty space on the sides */
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
+    /* 2. Force the white card to take up 100% of the available space */
     .login-card {
         width: 100% !important; 
-        max-width: 100% !important; /* Forces the white box to stretch */
-        padding: 30px 20px;
-        margin: 0; 
-        box-sizing: border-box;
+        max-width: 100% !important; 
+        padding: 30px 15px !important; /* Slightly less padding so inputs fit well */
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
     }
 
+    /* 3. Keep inputs from zooming in on iOS */
     .input-group input {
-        width: 100%;
-        box-sizing: border-box;
-        font-size: 16px !important; /* Stops iPhone auto-zoom */
+        width: 100% !important;
+        box-sizing: border-box !important;
+        font-size: 16px !important; 
     }
 
     .btn-login, .btn-signup {
-        width: 100%; /* Makes buttons full-width for easy tapping */
-        box-sizing: border-box;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 }

@@ -139,9 +139,23 @@
 .footer-link { text-align: center; margin-top: 20px; font-size: 0.9rem; color: #64748b; }
 .footer-link a { color: #3b82f6; text-decoration: none; font-weight: 600; }
 
-/* --- Mobile --- */
-@media (max-width: 900px) {
-    .login-container { flex-direction: column; gap: 2rem; }
-    .login-brand { padding: 0 20px; top: 0; }
-    .login-card { width: 100%; }
+/* --- MOBILE LAYOUT OPTIMIZATION --- */
+@media (max-width: 500px) {
+    /* Target the container holding the login/signup card */
+    .login-card, .auth-container {
+        width: 95% !important; /* Allow the card to take up almost the full width */
+        max-width: none;
+        margin: 10px auto; /* Centers the card with a tiny bit of breathing room */
+        padding: 20px 15px; /* Adjust internal padding so text doesn't hit the edges */
+    }
+
+    /* Make the input boxes feel more 'native' */
+    .input-group input {
+        width: 100%;
+        font-size: 16px; /* Prevents auto-zoom on iPhones */
+    }
+
+    .btn-primary {
+        width: 100%; /* Full width button for easier thumb tapping */
+    }
 }

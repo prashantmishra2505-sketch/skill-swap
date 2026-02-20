@@ -141,21 +141,26 @@
 
 /* --- MOBILE LAYOUT OPTIMIZATION --- */
 @media (max-width: 500px) {
-    /* Target the container holding the login/signup card */
-    .login-card, .auth-container {
-        width: 95% !important; /* Allow the card to take up almost the full width */
-        max-width: none;
-        margin: 10px auto; /* Centers the card with a tiny bit of breathing room */
-        padding: 20px 15px; /* Adjust internal padding so text doesn't hit the edges */
+    .login-container {
+        padding: 10px; /* Removes massive empty space on the sides */
     }
 
-    /* Make the input boxes feel more 'native' */
+    .login-card {
+        width: 100% !important; 
+        max-width: 100% !important; /* Forces the white box to stretch */
+        padding: 30px 20px;
+        margin: 0; 
+        box-sizing: border-box;
+    }
+
     .input-group input {
         width: 100%;
-        font-size: 16px; /* Prevents auto-zoom on iPhones */
+        box-sizing: border-box;
+        font-size: 16px !important; /* Stops iPhone auto-zoom */
     }
 
-    .btn-primary {
-        width: 100%; /* Full width button for easier thumb tapping */
+    .btn-login, .btn-signup {
+        width: 100%; /* Makes buttons full-width for easy tapping */
+        box-sizing: border-box;
     }
 }

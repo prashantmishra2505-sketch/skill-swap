@@ -141,6 +141,9 @@
 
 /* --- MOBILE LAYOUT OPTIMIZATION --- */
 @media (max-width: 600px) {
+    .container {
+        padding: 0 10px !important;
+    }
     /* 1. Stretch the container to ignore the base padding */
     .login-container {
         width: 100% !important;

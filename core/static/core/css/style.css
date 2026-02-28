@@ -280,31 +280,31 @@ select:focus {
 
     /* 4. Search Bar Fix */
     .search-bar {
-    width: 100%;
-    flex-direction: column; /* Stack input on top of button */
-    gap: 12px;             /* Space between input and button */
-    padding: 10px;
-    background: white;     /* Ensure it stands out against the blue background */
-    border-radius: 16px;
-    box-shadow: var(--shadow-sm);
+        width: 100%;
+        flex-direction: column; /* Stack input on top of button */
+        gap: 12px;             /* Space between input and button */
+        padding: 10px;
+        background: white;     /* Ensure it stands out against the blue background */
+        border-radius: 16px;
+        box-shadow: var(--shadow-sm);
     }
 
     .search-bar input {
-    width: 100%;
-    margin-bottom: 0;      /* Removed old margin */
-    text-align: left;
-    padding: 12px 15px;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;   /* Match the general card style */
+        width: 100%;
+        margin-bottom: 0;      /* Removed old margin */
+        text-align: left;
+        padding: 12px 15px;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;   /* Match the general card style */
     }
 
     .btn-search {
-    width: 100%;           /* Make button full width */
-    margin-left: 0;
-    padding: 12px;
-    border-radius: 12px;
-    font-size: 1rem;
-    justify-content: center; /* Center the text inside the button */
+        width: 100%;           /* Make button full width */
+        margin-left: 0;
+        padding: 12px;
+        border-radius: 12px;
+        font-size: 1rem;
+        justify-content: center; /* Center the text inside the button */
     }
 
     /* 5. Typography */
@@ -315,5 +315,16 @@ select:focus {
     .profile-pic-small {
         width: 32px;
         height: 32px;
+    }
+
+    /* 7. Authentication Pages (Login & Signup Fix) */
+    .container {
+        padding: 10px; 
+    }
+
+    .login-container {
+        width: 100%; 
+        padding: 30px 15px; 
+        box-sizing: border-box; 
     }
 }

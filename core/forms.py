@@ -14,10 +14,14 @@ class UserSkillForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['location', 'bio']
+        fields = ['location', 'bio', 'image'] # All three fields are here!
+        
+        # This tells Django how to style the auto-generated HTML boxes
         widgets = {
             'location': forms.TextInput(attrs={'class': 'form-input', 'placeholder': 'e.g. New York, USA'}),
             'bio': forms.Textarea(attrs={'class': 'form-input', 'rows': 3, 'placeholder': 'Tell us about yourself...'}),
+            # Optional: You can also style the image upload button!
+            'image': forms.FileInput(attrs={'class': 'form-input'}), 
         }
 
 class UserForm(forms.ModelForm):
@@ -25,9 +29,4 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ['first_name', 'last_name', 'email']
 
-
-class ProfileForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ['location', 'bio', 'image'] # <--- Add 'image' here!
 

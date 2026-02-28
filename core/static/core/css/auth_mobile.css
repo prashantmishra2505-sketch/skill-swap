@@ -149,6 +149,8 @@
         width: 100% !important;
         margin: 0 !important;
         padding: 0 !important;
+        flex-direction: column !important; /* <--- THIS STACKS THEM */
+        gap: 2rem !important;
     }
 
     /* 2. Force the white card to take up 100% of the available space */
